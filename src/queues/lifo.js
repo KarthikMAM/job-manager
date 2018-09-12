@@ -3,19 +3,11 @@ export default class LIFO {
     this.queue = []
   }
 
-  getNext () {
-    return this.queue.pop()
-  }
+  getNext = () => this.queue.pop()
 
-  add (job) {
-    this.queue.push(job)
-  }
+  add = (job) => this.queue.push(job)
 
-  hasMore () {
-    return this.queue.length > 0
-  }
+  hasMore = () => this.queue.length > 0
 
-  purge () {
-    this.queue = []
-  }
+  purge = () => { this.queue = [] }
 }

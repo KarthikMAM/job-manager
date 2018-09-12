@@ -3,19 +3,11 @@ export default class FIFO {
     this.queue = []
   }
 
-  getNext () {
-    return this.queue.shift()
-  }
+  getNext = () => this.queue.shift()
 
-  add (job) {
-    this.queue.push(job)
-  }
+  add = (job) => this.queue.push(job)
 
-  hasMore () {
-    return this.queue.length > 0
-  }
+  hasMore = () => this.queue.length > 0
 
-  purge () {
-    this.queue = []
-  }
+  purge = () => { this.queue = [] }
 }

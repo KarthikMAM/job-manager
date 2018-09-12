@@ -18,21 +18,17 @@ export default class QueueManager {
     this.queue = new options.queueType() // eslint-disable-line new-cap
   }
 
-  add (job) {
-    return new Promise((resolve) => this.queue.add(() => resolve(job())))
-  }
+  add = (job) => new Promise((resolve) => this.queue.add(() => resolve(job())))
 
-  start () {
+  start = () => {
     if (this.workers.length !== 0) return
 
     this.workers = this.options.workers.map(worker => setInterval(this.dispatcher(worker.count), worker.interval))
   }
 
-  purge () {
-    this.queue.purge()
-  }
+  purge = () => this.queue.purge()
 
-  dispatcher (count) {
+  dispatcher = (count) => {
     return () => {
       for (let i = 0; i < count; i++) {
         if (!this.queue.hasMore()) break
@@ -42,7 +38,7 @@ export default class QueueManager {
     }
   }
 
-  stop () {
+  stop = () => {
     while (this.workers.length > 0) clearInterval(this.workers.pop())
   }
 }
