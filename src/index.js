@@ -18,7 +18,13 @@ export default class QueueManager {
     this.queue = new options.queueType() // eslint-disable-line new-cap
   }
 
-  add = (job) => new Promise((resolve) => this.queue.add(() => resolve(job())))
+  add = (job) => new Promise((resolve, reject) => this.queue.add(() => {
+    try {
+      resolve(job())
+    } catch (e) {
+      reject(e)
+    }
+  }))
 
   start = () => {
     if (this.workers.length !== 0) return
