@@ -2,6 +2,13 @@
 
 A util to manage in-memory job queues in a multi-worker & rate-limited environments
 
+## Installing
+
+```bash
+npm i @karthikmam/job-manager
+
+yarn add @karthikmam/job-manager
+```
 ## Example
 
 A simple ratelimited LIFO jobs scheduler executing 2 jobs per second with a burst execution of 100 jobs every 1 second
