@@ -56,3 +56,11 @@ jobManager.start()
 | Workers    | workers   | Specifies the configuration of the worker used to process the jobs in the queue. It is an array having two **required** fields namely `jobsPerInterval` and `interval (in milliseconds)`.                                                    | [{jobsPerInterval: 1, interval: 100}] |
 | Queue Type | queueType | Specifies the type of the queue. For currently supported type see [Queue Types](https://github.com/KarthikMAM/job-manager/blob/master/src/index.js#L5) and [Queue Sources](https://github.com/KarthikMAM/job-manager/tree/master/src/queues) | JobManager.queueTypes.LIFO            |
 
+## Functions
+
+| Function               | Description                                                                                                                                                          | Example                                                                          |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| dispatch(job, ...args) | This enqueues the **job**, which is a function and its **args**. It returns a **Promise** which resolves when the job/function gets its chance to complete execution | jobManager.dispatch((a,b) => a + b, 1, 2).then(console.log).catch(console.error) |
+| start()                | This starts all the workers, which process the jobs                                                                                                                  | jobManager.start()                                                               |
+| stop()                 | This stops all the active workers                                                                                                                                    | jobManager.stop()                                                                |
+| purgeQueue()           | This deletes all the enqueued jobs. Note: This won't delete the jobs which are currently executing                                                                   | jobManager.purgeQueue()                                                          |
