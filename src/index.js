@@ -13,12 +13,12 @@ export default class JobManager {
   }
 
   constructor (options = {}) {
-    this.options = { ...JobManager.defaultOptions, ...options }
-    this.workers = []
-    this.queue = new this.options.queueType() // eslint-disable-line new-cap
+    this._options = { ...JobManager.defaultOptions, ...options }
+    this._workers = []
+    this._queue = new this._options.queueType() // eslint-disable-line new-cap
   }
 
-  dispatch = (job, ...args) => new Promise((resolve, reject) => this.queue.add(() => {
+  dispatch = (job, ...args) => new Promise((resolve, reject) => this._queue.add(() => {
     try {
       resolve(job(...args))
     } catch (e) {
@@ -27,24 +27,24 @@ export default class JobManager {
   }))
 
   start = () => {
-    if (this.workers.length !== 0) return
+    if (this._workers.length !== 0) return
 
-    this.workers = this.options.workers.map(worker => setInterval(this.dispatcher(worker.jobsPerInterval), worker.interval))
+    this._workers = this._options.workers.map(worker => setInterval(this._dispatcher(worker.jobsPerInterval), worker.interval))
   }
 
-  purgeQueue = () => this.queue.purge()
-
-  dispatcher = (jobsToFinish) => {
-    return () => {
-      for (let i = 0; i < jobsToFinish; i++) {
-        if (!this.queue.hasMore()) break
-
-        this.queue.getNext()()
-      }
-    }
-  }
+  purgeQueue = () => this._queue.purge()
 
   stop = () => {
-    while (this.workers.length > 0) clearInterval(this.workers.pop())
+    while (this._workers.length > 0) clearInterval(this._workers.pop())
+  }
+
+  _dispatcher = (jobsToFinish) => {
+    return () => {
+      for (let i = 0; i < jobsToFinish; i++) {
+        if (!this._queue.hasMore()) break
+
+        this._queue.getNext()()
+      }
+    }
   }
 }
