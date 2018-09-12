@@ -1,23 +1,25 @@
-export default class QueueManager {
-  constructor (options = QueueManager.options) {
-    this.options = options
-    this.queue = []
-    this.workers = []
-  }
+import FIFO from './queues/fifo'
+import LIFO from './queues/lifo'
 
-  static options = {
+export default class QueueManager {
+  static queueTypes = { LIFO, FIFO }
+
+  static defaultOptions = {
     workers: [{
       count: 1,
       interval: 100,
     }],
+    queueType: QueueManager.queueTypes.LIFO,
   }
 
-  enqueue (job) {
-    return new Promise((resolve) => this.queue.push(() => resolve(job())))
+  constructor (options = QueueManager.defaultOptions) {
+    this.options = options
+    this.workers = []
+    this.queue = new options.queueType() // eslint-disable-line new-cap
   }
 
-  purge () {
-    this.queue = []
+  add (job) {
+    return new Promise((resolve) => this.queue.add(() => resolve(job())))
   }
 
   start () {
@@ -26,12 +28,16 @@ export default class QueueManager {
     this.workers = this.options.workers.map(worker => setInterval(this.dispatcher(worker.count), worker.interval))
   }
 
+  purge () {
+    this.queue.purge()
+  }
+
   dispatcher (count) {
     return () => {
       for (let i = 0; i < count; i++) {
-        if (this.queue.length <= 0) break
+        if (!this.queue.hasMore()) break
 
-        this.queue.pop()()
+        this.queue.getNext()()
       }
     }
   }
