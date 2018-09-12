@@ -1,7 +1,7 @@
 {
-  "name": "@karthikmam/queue-manager",
+  "name": "@karthikmam/job-manager",
   "version": "0.0.1",
-  "description": "A Simple Queue Manager",
+  "description": "A Simple Job Manager",
   "main": "dist/bundle.js",
   "scripts": {
     "prepublish": "rollup -c",

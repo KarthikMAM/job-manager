@@ -1,7 +1,7 @@
 import FIFO from './queues/fifo'
 import LIFO from './queues/lifo'
 
-export default class QueueManager {
+export default class JobManager {
   static queueTypes = { LIFO, FIFO }
 
   static defaultOptions = {
@@ -9,11 +9,11 @@ export default class QueueManager {
       jobsPerInterval: 1,
       interval: 100,
     }],
-    queueType: QueueManager.queueTypes.LIFO,
+    queueType: JobManager.queueTypes.LIFO,
   }
 
   constructor (options = {}) {
-    this.options = { ...QueueManager.defaultOptions, ...options }
+    this.options = { ...JobManager.defaultOptions, ...options }
     this.workers = []
     this.queue = new options.queueType() // eslint-disable-line new-cap
   }

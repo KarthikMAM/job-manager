@@ -6,7 +6,7 @@ export default {
   output: {
     file: 'dist/bundle.js',
     format: 'umd',
-    name: 'QueueManager',
+    name: 'JobManager',
   },
   plugins: [
     babel(),
