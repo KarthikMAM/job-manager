@@ -4,8 +4,7 @@
   "description": "A Simple Queue Manager",
   "main": "dist/bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "rollup -c",
+    "prepublish": "rollup -c",
     "lint": "eslint ."
   },
   "author": "Karthik M A M <karthik_m_a_M@outlook.com> (https://karthikmam.com)",
