@@ -1,5 +1,7 @@
 # Job Manager
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 A util to manage in-memory job queues in a multi-worker & rate-limited environments
 
 ## Installing
