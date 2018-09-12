@@ -1,6 +1,6 @@
 {
   "name": "@karthikmam/job-manager",
-  "version": "0.0.1",
+  "version": "0.0.1alpha",
   "description": "A Simple Job Manager",
   "main": "dist/bundle.js",
   "scripts": {
