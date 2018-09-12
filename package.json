@@ -8,9 +8,10 @@
   },
   "author": "Karthik M A M <karthik_m_a_M@outlook.com> (https://karthikmam.com)",
   "license": "ISC",
-  "devDependencies": {
-  },
   "standard": {
     "parser": "babel-eslint"
+  "devDependencies": {
+    "@babel/core": "^7.0.1",
+    "@babel/preset-env": "^7.0.0",
   }
 }
