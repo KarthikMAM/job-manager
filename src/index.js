@@ -6,7 +6,7 @@ export default class QueueManager {
 
   static defaultOptions = {
     workers: [{
-      count: 1,
+      jobsPerInterval: 1,
       interval: 100,
     }],
     queueType: QueueManager.queueTypes.LIFO,
@@ -23,14 +23,14 @@ export default class QueueManager {
   start = () => {
     if (this.workers.length !== 0) return
 
-    this.workers = this.options.workers.map(worker => setInterval(this.dispatcher(worker.count), worker.interval))
+    this.workers = this.options.workers.map(worker => setInterval(this.dispatcher(worker.jobsPerInterval), worker.interval))
   }
 
   purge = () => this.queue.purge()
 
-  dispatcher = (count) => {
+  dispatcher = (jobsToFinish) => {
     return () => {
-      for (let i = 0; i < count; i++) {
+      for (let i = 0; i < jobsToFinish; i++) {
         if (!this.queue.hasMore()) break
 
         this.queue.getNext()()
