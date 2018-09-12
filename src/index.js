@@ -18,7 +18,7 @@ export default class QueueManager {
     this.queue = new options.queueType() // eslint-disable-line new-cap
   }
 
-  add = (job) => new Promise((resolve, reject) => this.queue.add(() => {
+  dispatch = (job) => new Promise((resolve, reject) => this.queue.add(() => {
     try {
       resolve(job())
     } catch (e) {
@@ -32,7 +32,7 @@ export default class QueueManager {
     this.workers = this.options.workers.map(worker => setInterval(this.dispatcher(worker.jobsPerInterval), worker.interval))
   }
 
-  purge = () => this.queue.purge()
+  purgeQueue = () => this.queue.purge()
 
   dispatcher = (jobsToFinish) => {
     return () => {
