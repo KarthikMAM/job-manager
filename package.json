@@ -27,6 +27,17 @@
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-terser": "^2.0.2"
   },
+  "keywords": [
+    "rate limit",
+    "burst limit",
+    "job scheduler",
+    "lifo",
+    "fifo",
+    "dispatcher",
+    "scraping",
+    "crawling",
+    "job manager"
+  ],
   "files": [
     "dist/**/*"
   ]
