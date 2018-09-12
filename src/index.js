@@ -41,9 +41,13 @@ export default class JobManager {
   _dispatcher = (jobsToFinish) => {
     return () => {
       for (let i = 0; i < jobsToFinish; i++) {
-        if (!this._queue.hasMore()) break
+        const nextJob = this._queue.getNext()
 
-        this._queue.getNext()()
+        if (nextJob) {
+          nextJob()
+        } else {
+          break
+        }
       }
     }
   }
