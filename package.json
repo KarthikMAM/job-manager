@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "rollup -c",
     "lint": "eslint ."
   },
   "author": "Karthik M A M <karthik_m_a_M@outlook.com> (https://karthikmam.com)",
@@ -22,5 +23,7 @@
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
+    "rollup": "^0.65.2",
+    "rollup-plugin-babel": "^4.0.3"
   }
 }
