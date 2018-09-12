@@ -9,6 +9,16 @@ npm i @karthikmam/job-manager
 
 yarn add @karthikmam/job-manager
 ```
+
+## Features
+
+This project makes it easy to
+
+- Create a multiple workers with different rate
+- Simple to implement rate limits, burst limits etc.
+- Support for different types of queues (FIFO, LIFO)
+- Promise based API provides easy workflows and error handling capabilities
+
 ## Example
 
 A simple ratelimited LIFO jobs scheduler executing 2 jobs per second with a burst execution of 100 jobs every 1 second
