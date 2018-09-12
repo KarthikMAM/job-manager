@@ -12,8 +12,8 @@ export default class QueueManager {
     queueType: QueueManager.queueTypes.LIFO,
   }
 
-  constructor (options = QueueManager.defaultOptions) {
-    this.options = options
+  constructor (options = {}) {
+    this.options = { ...QueueManager.defaultOptions, ...options }
     this.workers = []
     this.queue = new options.queueType() // eslint-disable-line new-cap
   }
