@@ -15,7 +15,7 @@ export default class JobManager {
   constructor (options = {}) {
     this.options = { ...JobManager.defaultOptions, ...options }
     this.workers = []
-    this.queue = new options.queueType() // eslint-disable-line new-cap
+    this.queue = new this.options.queueType() // eslint-disable-line new-cap
   }
 
   dispatch = (job) => new Promise((resolve, reject) => this.queue.add(() => {
