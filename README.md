@@ -48,3 +48,11 @@ jobManager.start()
     .catch(error => console.log(error))
 })
 ```
+
+## Constructor Options
+
+| Option     | key       | Description                                                                                                                                                                                                                                  | Default                               |
+| ---------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| Workers    | workers   | Specifies the configuration of the worker used to process the jobs in the queue. It is an array having two **required** fields namely `jobsPerInterval` and `interval (in milliseconds)`.                                                    | [{jobsPerInterval: 1, interval: 100}] |
+| Queue Type | queueType | Specifies the type of the queue. For currently supported type see [Queue Types](https://github.com/KarthikMAM/job-manager/blob/master/src/index.js#L5) and [Queue Sources](https://github.com/KarthikMAM/job-manager/tree/master/src/queues) | JobManager.queueTypes.LIFO            |
+
