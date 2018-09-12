@@ -7,7 +7,7 @@
     "prepublish": "rollup -c",
     "lint": "eslint ."
   },
-  "author": "Karthik M A M <karthik_m_a_M@outlook.com> (https://karthikmam.com)",
+  "author": "Karthik M A M <karthik_m_a_m@outlook.com> (https://karthikmam.com)",
   "license": "MIT",
   "standard": {
     "parser": "babel-eslint"
