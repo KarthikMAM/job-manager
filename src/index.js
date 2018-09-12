@@ -18,9 +18,9 @@ export default class JobManager {
     this.queue = new this.options.queueType() // eslint-disable-line new-cap
   }
 
-  dispatch = (job) => new Promise((resolve, reject) => this.queue.add(() => {
+  dispatch = (job, ...args) => new Promise((resolve, reject) => this.queue.add(() => {
     try {
-      resolve(job())
+      resolve(job(...args))
     } catch (e) {
       reject(e)
     }
